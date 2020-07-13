@@ -30,14 +30,5 @@
       <description>will wite something genuin and little bit made up later</description>
     </item>
     
-    <item>
-      <title></title>
-      <link>/posts/slack-conversation-api-migration/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/posts/slack-conversation-api-migration/</guid>
-      <description></description>
-    </item>
-    
   </channel>
 </rss>
