@@ -2,29 +2,29 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Xeon Zolt</title>
-    <link>localhost/</link>
+    <link>xeon-zolt.github.io/</link>
     <description>Recent content on Xeon Zolt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="localhost/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="xeon-zolt.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>About</title>
-      <link>localhost/about/</link>
+      <link>xeon-zolt.github.io/about/</link>
       <pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>localhost/about/</guid>
+      <guid>xeon-zolt.github.io/about/</guid>
       <description>will wite something genuin and little bit made up later</description>
     </item>
     
     <item>
       <title></title>
-      <link>localhost/posts/slack-conversation-api-migration/</link>
+      <link>xeon-zolt.github.io/posts/slack-conversation-api-migration/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>localhost/posts/slack-conversation-api-migration/</guid>
+      <guid>xeon-zolt.github.io/posts/slack-conversation-api-migration/</guid>
       <description></description>
     </item>
     
