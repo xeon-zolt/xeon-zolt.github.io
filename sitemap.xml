@@ -3,6 +3,36 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/tags/git/</loc>
+    <lastmod>2020-07-12T21:54:20+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/git-hooks/</loc>
+    <lastmod>2020-07-12T21:54:20+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/githooks/</loc>
+    <lastmod>2020-07-12T21:54:20+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/</loc>
+    <lastmod>2020-07-12T21:54:20+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-07-12T21:54:20+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2020-07-12T21:54:20+05:30</lastmod>
+  </url>
+  
+  <url>
     <loc>/about/</loc>
     <lastmod>2020-06-01T00:00:00+00:00</lastmod>
   </url>
@@ -16,19 +46,7 @@
   </url>
   
   <url>
-    <loc>/posts/</loc>
-  </url>
-  
-  <url>
     <loc>/series/</loc>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
-  </url>
-  
-  <url>
-    <loc>/</loc>
   </url>
   
 </urlset>

@@ -5,7 +5,45 @@
         <description>Recent content in Posts on Xeon Zolt</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
+        <lastBuildDate>Sun, 12 Jul 2020 21:54:20 +0530</lastBuildDate>
         <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Git Hooks</title>
+            <link>/posts/git-hooks/</link>
+            <pubDate>Sun, 12 Jul 2020 21:54:20 +0530</pubDate>
+            
+            <guid>/posts/git-hooks/</guid>
+            <description>tl-dr  python django project git hooks tutorial for automating certian tasks and explaination about git hooks
+ What are git hooks  Git hooks are scripts/programs that Git executes before or after a particular event occurs in a Git repository. Git hooks are a built-in feature - no need to download anything. Git hooks are run locally. they are placed in hooks directory to trigger actions at certain points in git’s execution.</description>
+            <content type="html"><![CDATA[<h3 id="tl-dr">tl-dr</h3>
+<blockquote>
+<p>python django project git hooks tutorial for automating certian tasks and explaination about git hooks</p>
+</blockquote>
+<h2 id="what-are-git-hooks">What are git hooks</h2>
+<ul>
+<li>Git hooks are scripts/programs that Git executes before or after a particular event occurs in a Git repository. Git hooks are a built-in feature - no need to download anything. Git hooks are run locally.</li>
+<li>they are placed in hooks directory to trigger actions at certain points in git’s execution. Hooks that don’t have the executable bit set are ignored.</li>
+<li>They let you customize Git&rsquo;s internal behavior and trigger customizable actions at key points in the development life cycle.
+for example I want to spell-check for commit message ( I have spellophobia ) or I want to check code for pep8 maybe before commit or I want to run mighrations after taking pull if one is avaliable
+its only limited to what you can imagine and trust me it will make you fast and efficent also little lazy</li>
+</ul>
+<h2 id="how-do-i-implement-git-hooks">How do I implement Git hooks?</h2>
+<p>The short and easy: Overwrite (or create) one of the scripts in .git/hooks and make it executable.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">  chmod +x .git/hooks/scipt
+</code></pre></div><h2 id="git-hooks-for-improving-python-django-project-flow--if-you-read-it-it-can-be-used-for-other-projects-too-">Git hooks for improving Python Django project Flow ( if you read it it can be used for other projects too )</h2>
+<h3 id="pre-commit--this-is-one-of-the-most-usefull-hook-to-make-sure-you-are-not-doing-any-mistake-">pre-commit ( this is one of the most usefull hook to make sure you are not doing any mistake )</h3>
+<h2 id="notes">Notes</h2>
+<h3 id="q1-i-dont-want-to-use-hook-how-to-bypass-it-during-commit-">Q1: I dont want to use hook. How to bypass it during commit ?</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git commit --no-verify
+<span style="color:#75715e"># or</span>
+git commit --n
+</code></pre></div><h2 id="references">References</h2>
+<p><a href="https://githooks.com/">https://githooks.com/</a>
+<a href="https://www.git-scm.com/doc">https://www.git-scm.com/doc</a>
+<a href="https://github.com/aitemr/awesome-git-hooks">https://github.com/aitemr/awesome-git-hooks</a></p>
+]]></content>
+        </item>
         
         <item>
             <title></title>
