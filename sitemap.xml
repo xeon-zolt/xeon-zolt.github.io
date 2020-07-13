@@ -3,32 +3,32 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>xeon-zolt.github.io/about/</loc>
+    <loc>/about/</loc>
     <lastmod>2020-06-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>xeon-zolt.github.io/posts/slack-conversation-api-migration/</loc>
+    <loc>/posts/slack-conversation-api-migration/</loc>
   </url>
   
   <url>
-    <loc>xeon-zolt.github.io/blog/</loc>
+    <loc>/blog/</loc>
   </url>
   
   <url>
-    <loc>xeon-zolt.github.io/posts/</loc>
+    <loc>/posts/</loc>
   </url>
   
   <url>
-    <loc>xeon-zolt.github.io/series/</loc>
+    <loc>/series/</loc>
   </url>
   
   <url>
-    <loc>xeon-zolt.github.io/tags/</loc>
+    <loc>/tags/</loc>
   </url>
   
   <url>
-    <loc>xeon-zolt.github.io/</loc>
+    <loc>/</loc>
   </url>
   
 </urlset>
