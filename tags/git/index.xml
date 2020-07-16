@@ -17,7 +17,7 @@
       <pubDate>Sun, 12 Jul 2020 21:54:20 +0530</pubDate>
       
       <guid>/posts/git-hooks/</guid>
-      <description>tl-dr  python django project git hooks tutorial for automating certian tasks and explaination about git hooks
+      <description>tl-dr  python Django project git hooks tutorial for automating certain tasks and explanation about git hooks
  What are git hooks  Git hooks are scripts/programs that Git executes before or after a particular event occurs in a Git repository. Git hooks are a built-in feature - no need to download anything. Git hooks are run locally. they are placed in hooks directory to trigger actions at certain points in git’s execution.</description>
     </item>
     

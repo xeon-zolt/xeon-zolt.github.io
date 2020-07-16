@@ -14,31 +14,100 @@
             <pubDate>Sun, 12 Jul 2020 21:54:20 +0530</pubDate>
             
             <guid>/posts/git-hooks/</guid>
-            <description>tl-dr  python django project git hooks tutorial for automating certian tasks and explaination about git hooks
+            <description>tl-dr  python Django project git hooks tutorial for automating certain tasks and explanation about git hooks
  What are git hooks  Git hooks are scripts/programs that Git executes before or after a particular event occurs in a Git repository. Git hooks are a built-in feature - no need to download anything. Git hooks are run locally. they are placed in hooks directory to trigger actions at certain points in git’s execution.</description>
             <content type="html"><![CDATA[<h3 id="tl-dr">tl-dr</h3>
 <blockquote>
-<p>python django project git hooks tutorial for automating certian tasks and explaination about git hooks</p>
+<p>python Django project git hooks tutorial for automating certain tasks and explanation about git hooks</p>
 </blockquote>
 <h2 id="what-are-git-hooks">What are git hooks</h2>
 <ul>
 <li>Git hooks are scripts/programs that Git executes before or after a particular event occurs in a Git repository. Git hooks are a built-in feature - no need to download anything. Git hooks are run locally.</li>
 <li>they are placed in hooks directory to trigger actions at certain points in git’s execution. Hooks that don’t have the executable bit set are ignored.</li>
 <li>They let you customize Git&rsquo;s internal behavior and trigger customizable actions at key points in the development life cycle.
-for example I want to spell-check for commit message ( I have spellophobia ) or I want to check code for pep8 maybe before commit or I want to run mighrations after taking pull if one is avaliable
-its only limited to what you can imagine and trust me it will make you fast and efficent also little lazy</li>
+for example I want to spell-check for commit message ( I have spellophobia ) or I want to check code for PEP8 maybe before commit or I want to run migrations after taking pull if one is available
+its only limited to what you can imagine and trust me it will make you fast and efficient also little lazy</li>
 </ul>
 <h2 id="how-do-i-implement-git-hooks">How do I implement Git hooks?</h2>
 <p>The short and easy: Overwrite (or create) one of the scripts in .git/hooks and make it executable.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">  chmod +x .git/hooks/scipt
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">chmod +x .git/hooks/scipt
 </code></pre></div><h2 id="git-hooks-for-improving-python-django-project-flow--if-you-read-it-it-can-be-used-for-other-projects-too-">Git hooks for improving Python Django project Flow ( if you read it it can be used for other projects too )</h2>
-<h3 id="pre-commit--this-is-one-of-the-most-usefull-hook-to-make-sure-you-are-not-doing-any-mistake-">pre-commit ( this is one of the most usefull hook to make sure you are not doing any mistake )</h3>
+<h3 id="pre-push">pre-push</h3>
+<p>it is called after  <code>git push</code> after it has checked the remote status, but before anything has been pushed. If this script exits with a non-zero status nothing will be pushed</p>
+<p>we will start by creating a file in hooks folder</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">touch .git/hooks/pre-push
+</code></pre></div><p>now lets edit the file and lets create a check that no one can push to master</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bas" data-lang="bas"><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#f92672">!/</span>usr<span style="color:#f92672">/</span>bin<span style="color:#f92672">/</span>env bash
+branch<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;$(git rev-parse --abberev-ref HEAD)&#34;</span>
+
+if [<span style="color:#e6db74">&#34;$branch&#34;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;master&#34;</span>]; then
+	echo <span style="color:#e6db74">&#34;you cannot commit to &#39;&#34;</span><span style="color:#960050;background-color:#1e0010">$</span>(branch)<span style="color:#e6db74">&#34;&#39; branch&#34;</span>
+	exit <span style="color:#ae81ff">1</span>
+fi
+</code></pre></div><p>now final step make it executable</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">chmod +x .git/hooks/pre-push
+</code></pre></div><p>now whenever you will push to master it will fail it and throw you a message</p>
+<h3 id="post-merge--runs-after-git-pull-">post-merge ( runs after <code>git pull</code> )</h3>
+<p>we will start by creating a file in hooks called post-merge. so we can do many things after a pull request like if its a node project we can check for changes in package.json and run npm install similarly for python project we can check for requirement.txt file.</p>
+<p>I have a new  idea to not run migrations for a Django project after taking pull let it run automatically and let me forget that such a command exists.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/usr/bin/env bash
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e"># lets check for changed files</span>
+changed_files <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
+
+<span style="color:#75715e"># function to check and run if we see file we want</span>
+check_and_run<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+	echo <span style="color:#e6db74">&#34;</span>$changed_files<span style="color:#e6db74">&#34;</span> | grep -i --quiet <span style="color:#e6db74">&#34;</span>$1<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">&amp;&amp;</span> eval <span style="color:#e6db74">&#34;</span>$2<span style="color:#e6db74">&#34;</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e"># using for python packages</span>
+check_and_run migration <span style="color:#e6db74">&#34;python </span><span style="color:#66d9ef">$(</span>git rev-parse --show-toplevel<span style="color:#66d9ef">)</span><span style="color:#e6db74">/manage.py migrate&#34;</span>
+
+<span style="color:#75715e"># using for checking packages and its update</span>
+check_and_run requirements.txt <span style="color:#e6db74">&#34;pip install -r requirements.txt&#34;</span>
+
+</code></pre></div><p>​	replace python and pip with the path of your virtual env</p>
+<h3 id="pre-commit--this-is-one-of-the-most-useful-hook-to-make-sure-you-are-not-doing-any-mistake-">pre-commit ( this is one of the most useful hook to make sure you are not doing any mistake )</h3>
+<p>we are going to use a already available framework for this  <a href="https://pre-commit.com/">pre-commit</a> but you can also make a file too.</p>
+<ol>
+<li>
+<p>install pre-commit: <code>pip install pre-commit</code></p>
+</li>
+<li>
+<p>Add <code>pre-commit</code> to <code>requirements.txt</code> (or <code>requirements-dev.txt</code>)</p>
+</li>
+<li>
+<p>Define <code>.pre-commit-config.yaml</code> with the hooks you want to include.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">repos</span>:
+-   <span style="color:#66d9ef">repo</span>: https://github.com/ambv/black
+    <span style="color:#66d9ef">rev</span>: stable
+    <span style="color:#66d9ef">hooks</span>:
+    - <span style="color:#66d9ef">id</span>: black
+      <span style="color:#66d9ef">language_version</span>: python3<span style="color:#ae81ff">.4</span>
+-   <span style="color:#66d9ef">repo</span>: https://gitlab.com/pycqa/flake8
+    <span style="color:#66d9ef">rev</span>: <span style="color:#ae81ff">3.7.9</span>
+    <span style="color:#66d9ef">hooks</span>:
+    - <span style="color:#66d9ef">id</span>: flake8
+-   <span style="color:#66d9ef">repo</span>: https://github.com/pre-commit/pre-commit-hooks
+    <span style="color:#66d9ef">rev</span>: v3<span style="color:#ae81ff">.1.0</span>  
+    <span style="color:#66d9ef">hooks</span>:
+    -   <span style="color:#66d9ef">id</span>: trailing-whitespace
+</code></pre></div><p>flake is used for checking python file format you can create a config file too if you want it to be more specific</p>
+<p>black will fix formating errors before commit</p>
+<p>also you can find many more plug ins at <a href="https://github.com/pre-commit/pre-commit-hooks">pre-commit-hooks</a> git repo</p>
+</li>
+<li>
+<p>Execute <code>pre-commit install</code> to install git hooks in your <code>.git/</code> directory.</p>
+</li>
+</ol>
 <h2 id="notes">Notes</h2>
-<h3 id="q1-i-dont-want-to-use-hook-how-to-bypass-it-during-commit-">Q1: I dont want to use hook. How to bypass it during commit ?</h3>
+<h3 id="q-i-dont-want-to-use-hook-how-to-bypass-it-during-commit-">Q: I don&rsquo;t want to use hook. How to bypass it during commit ?</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git commit --no-verify
 <span style="color:#75715e"># or</span>
 git commit --n
-</code></pre></div><h2 id="references">References</h2>
+</code></pre></div><h3 id="q-i-only-want-to-run-lint-on-diff-">Q: I only want to run lint on diff ?</h3>
+<p>you can try a package called <a href="https://pypi.org/project/lint_diffs/">lint-diffs</a></p>
+<h2 id="references">References</h2>
 <p><a href="https://githooks.com/">https://githooks.com/</a>
 <a href="https://www.git-scm.com/doc">https://www.git-scm.com/doc</a>
 <a href="https://github.com/aitemr/awesome-git-hooks">https://github.com/aitemr/awesome-git-hooks</a></p>
